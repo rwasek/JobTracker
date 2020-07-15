@@ -8,8 +8,8 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
 
-		<class>com.skilldistillery.stockoverflow.entities.Comment</class>
-		<class>com.skilldistillery.stockoverflow.entities.CommentRating</class>
+		<class>com.skilldistillery.stockoverflow.entities.Job</class>
+		<class>com.skilldistillery.stockoverflow.entities.User</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

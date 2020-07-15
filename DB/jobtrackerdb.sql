@@ -21,13 +21,15 @@ USE `jobtrackerdb` ;
 DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(50) NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(50) NULL DEFAULT NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `enabled` TINYINT NOT NULL DEFAULT 1,
+  `enabled` TINYINT(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -36,15 +38,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `job` ;
 
 CREATE TABLE IF NOT EXISTS `job` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `company_name` VARCHAR(200) NOT NULL,
   `date_applied` DATE NOT NULL,
   `job_title` VARCHAR(100) NOT NULL,
   `location` VARCHAR(150) NOT NULL,
-  `contact` VARCHAR(45) NULL,
-  `cover_letter` TINYINT NULL,
-  `status` ENUM('PENDING', 'DENIED', 'OFFER') NULL,
-  `user_id` INT NOT NULL,
+  `contact` VARCHAR(45) NULL DEFAULT NULL,
+  `cover_letter` TINYINT(4) NULL DEFAULT NULL,
+  `status` ENUM('PENDING', 'DENIED', 'OFFER') NULL DEFAULT NULL,
+  `user_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_job_user_idx` (`user_id` ASC),
   CONSTRAINT `fk_job_user`
@@ -52,7 +54,9 @@ CREATE TABLE IF NOT EXISTS `job` (
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
 
 SET SQL_MODE = '';
 DROP USER IF EXISTS jobuser;
@@ -80,7 +84,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `jobtrackerdb`;
-INSERT INTO `job` (`id`, `company_name`, `date_applied`, `job_title`, `location`, `contact`, `cover_letter`, `status`, `user_id`) VALUES (1, 'Progrexion', '2020-07-11', 'Java Software Developer', 'Salt Lake City, UT', 'NULL', 0, 'PENDING', 1);
+INSERT INTO `job` (`id`, `company_name`, `date_applied`, `job_title`, `location`, `contact`, `cover_letter`, `status`, `user_id`) VALUES (1, 'cFocus Software', '2020-07-11', 'Junior Software Developer', 'Research Triangle Park, NC', NULL, 1, 'PENDING', 1);
 
 COMMIT;
 
