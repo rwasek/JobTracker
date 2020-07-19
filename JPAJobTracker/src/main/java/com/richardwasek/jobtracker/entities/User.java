@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
@@ -25,7 +27,7 @@ public class User {
 	private String password;
 	
 	private boolean enabled;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Job> jobs;
 

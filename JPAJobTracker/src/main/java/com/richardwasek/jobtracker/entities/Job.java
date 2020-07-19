@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Job {
 	
@@ -39,6 +41,7 @@ public class Job {
 	
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")

@@ -9,6 +9,6 @@ public interface JobService {
 	Job findJobById(Integer jId);
 	Job createNewJob(Job job);
 	Job updateJob(Job job, Integer jId);
-	void deleteJob(Integer jId);
+	boolean deleteJobById(Integer jId);
 	List<Job> findByCompanyName(String cName);
 }

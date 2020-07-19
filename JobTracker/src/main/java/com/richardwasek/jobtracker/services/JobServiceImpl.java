@@ -56,13 +56,16 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public void deleteJob(Integer jId) {
+	public boolean deleteJobById(Integer jId) {
+		boolean deleted = false;
 		Optional<Job> jobToDelete = jobRepo.findById(jId);
 		Job managedJob = null;
 		if(jobToDelete.isPresent()) {
 			managedJob = jobToDelete.get();
 			jobRepo.delete(managedJob);
+			deleted = true;
 		}
+		return deleted;
 	}
 
 	@Override
