@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JobService } from 'src/app/services/job.service';
+import { Job } from 'src/app/models/job';
 
 @Component({
   selector: 'app-job-list',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobListComponent implements OnInit {
 
-  constructor() { }
+  selected = null;
+  job = new Job();
+  jobList: Job[] = [];
+
+  constructor(
+    private jobSvc: JobService
+  ) { }
 
   ngOnInit(): void {
+    this.loadJobs();
+  }
+
+  loadJobs(){
+    this.jobSvc.index().subscribe(
+      jobs => {
+        this.jobList = jobs;
+      },
+      onfail => {
+        console.log(this.jobList);
+        console.error('Observer got an error: ' + onfail);
+      }
+    );
   }
 
 }

@@ -1,5 +1,3 @@
-import { stat } from 'fs';
-
 export class Job {
   id: number;
   companyName: string;
